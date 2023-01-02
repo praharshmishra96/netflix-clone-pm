@@ -1,0 +1,8 @@
+@keyframes animatebottom {
+    from {
+        bottom: -250px;
+    }
+    to {
+        bottom: 0;
+    }
+}
