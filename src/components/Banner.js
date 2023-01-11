@@ -3,10 +3,12 @@ import styled from '@emotion/styled'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
 import { tmdbInstance } from './axios'
+import { useNavigate } from 'react-router-dom'
 
-function Banner() {
+function Banner({mediaType}) {
     const [movie, setMovie] = useState([]);
     const [truncateStatus, setTruncateStatus] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         async function fetchData() {
@@ -32,13 +34,22 @@ function Banner() {
         };
     }
 
+    function playMovies(e, media_type, movie_id) {
+        navigate('/trailer', {
+            state: {
+                mediaType: media_type,
+                movieId: movie_id
+            }
+        });
+    }
+
     return (
         <Container bgImg={movie?.backdrop_path}>
             <BannerContents>
                 <BannerTitle>{movie?.title || movie?.name}</BannerTitle>
                 <BannerDescription>{truncate(movie?.overview, 150)}</BannerDescription>
                 <BannerButtons>
-                    <BannerButton><PlayArrowIcon style={{ marginRight: "2.5px" }} />Play</BannerButton>
+                    <BannerButton onClick={(e) => playMovies(e, mediaType, movie.id)}><PlayArrowIcon style={{ marginRight: "2.5px" }} />Play</BannerButton>
                     <BannerButton onClick={(e) => setTruncateStatusfunc(e)}><InfoOutlinedIcon style={{ marginRight: "5px" }} />More Info</BannerButton>
                 </BannerButtons>
             </BannerContents>
