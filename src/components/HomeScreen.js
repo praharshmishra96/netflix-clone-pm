@@ -8,7 +8,7 @@ function HomeScreen() {
   return (
     <Container>
         <Nav />
-        <Banner />
+        <Banner mediaType="tv" />
         <Row title="Popular on Netflix" mediaType="tv" fetchUrl="/discover/tv?api_key=4cc5c4c66f3ba9a39f17936b12646c0c&with_networks=213&sort_by=vote_count.desc" zindex={5} />
         <Row title="Only on Netflix" mediaType="tv" fetchUrl="/discover/tv?api_key=4cc5c4c66f3ba9a39f17936b12646c0c&with_networks=213" zindex={4} />
         <Row title="Trending Now" mediaType="all" fetchUrl="/trending/all/week?api_key=4cc5c4c66f3ba9a39f17936b12646c0c" zindex={3} />
